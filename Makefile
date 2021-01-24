@@ -10,14 +10,23 @@ NM := nm
 
 APP_NAME := cpx_https
 
+INC = \
+	linux\
+
 SRC_FILES := \
 		main.c
 
 
-all: build
-
 
 OBJ_FILES := $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+
+INC_CFLAGS := $(addprefix -I, $(INC))
+
+CFLAGS += $(INC_CFLAGS)
+
+
+all: build
+
 
 $(OBJ_DIR)/%.o: %.c
 	@echo + cc $<
